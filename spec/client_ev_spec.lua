@@ -78,6 +78,9 @@ describe(
         local http_serv = socket.bind('*',port + 20)
         local http_con
         wsc:on_error(async(function(ws,err)
+              if err ~= 'accept failed' then
+                print(debug.traceback('',2))
+              end
               assert.is_equal(err,'accept failed')
               ws:close()
               http_serv:close()
