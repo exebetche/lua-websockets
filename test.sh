@@ -1,10 +1,11 @@
 #!/bin/bash
 killall wstest 2>/dev/null
-wstest -m echoserver -w ws://localhost:${LUAWS_WSTEST_PORT:=8081}  &
+wstest -m echoserver -w ws://localhost:${LUAWS_WSTEST_PORT:=8088}  &
 pid=$!
-for T in {1..2}
+echo "Waiting for wstest to start..."
+until nc -w 1 localhost 8088
 do
-    echo "Waiting for wstest to start..." $T "/10 secs"
+    echo "..."
     sleep 1
 done
 for spec in `find spec -name "*_spec.lua"`
