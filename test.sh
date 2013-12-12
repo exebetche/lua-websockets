@@ -10,7 +10,7 @@ done
 for spec in `find spec -name "*_spec.lua"`
 do
   echo "running busted" $spec
-  busted -o TAP $spec
+  busted  $spec
 done
 bustedcode=$?
 kill ${pid}
