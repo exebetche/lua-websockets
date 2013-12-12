@@ -1,5 +1,5 @@
 local socket = require'socket'
-local port = os.getenv('LUAWS_WSTEST_PORT') or 8081
+local port = os.getenv('LUAWS_WSTEST_PORT') or 8088
 local url = 'ws://localhost:'..port
 
 local client = require'websocket.client'
@@ -81,7 +81,7 @@ describe(
       end)
     
     it(
-      'returns error when sending in non-open state (requires external websocket server @port 8081)',
+      'returns error when sending in non-open state (requires external websocket server @port 8088)',
       function()
         local c = client.new()
         local ok,was_clean,code,reason = c:send('test')
@@ -100,7 +100,7 @@ describe(
       end)
     
     it(
-      'returns error when connecting twice (requires external websocket server @port 8081)',
+      'returns error when connecting twice (requires external websocket server @port 8088)',
       function()
         local c = client.new()
         local ok,err = c:connect(url,'echo-protocol')
@@ -113,14 +113,14 @@ describe(
       end)
     
     it(
-      'can send (requires external websocket server @port 8081)',
+      'can send (requires external websocket server @port 8088)',
       function()
         assert.is_same(type(wsc.send),'function')
         wsc:send('Hello again')
       end)
     
     it(
-      'can receive (requires external websocket server @port 8081)',
+      'can receive (requires external websocket server @port 8088)',
       function()
         assert.is_same(type(wsc.receive),'function')
         local echoed = wsc:receive()
@@ -136,7 +136,7 @@ describe(
     end
     
     it(
-      'can send with payload 127 (requires external websocket server @port 8081)',
+      'can send with payload 127 (requires external websocket server @port 8088)',
       function()
         local text = random_text(127)
         wsc:send(text)
@@ -145,7 +145,7 @@ describe(
       end)
     
     it(
-      'can send with payload 0xffff-1 (requires external websocket server @port 8081)',
+      'can send with payload 0xffff-1 (requires external websocket server @port 8088)',
       function()
         local text = random_text(0xffff-1)
         assert.is_same(#text,0xffff-1)
@@ -156,7 +156,7 @@ describe(
       end)
     
     it(
-      'can send with payload 0xffff+1 (requires external websocket server @port 8081)',
+      'can send with payload 0xffff+1 (requires external websocket server @port 8088)',
       function()
         local text = random_text(0xffff+1)
         assert.is_same(#text,0xffff+1)
@@ -167,7 +167,7 @@ describe(
       end)
     
     it(
-      'can close cleanly (requires external websocket server @port 8081)',
+      'can close cleanly (requires external websocket server @port 8088)',
       function()
         local was_clean,code,reason = wsc:close()
         assert.is_true(was_clean)

@@ -3,7 +3,7 @@ local socket = require'socket'
 local client = require'websocket.client'
 local ev = require'ev'
 local frame = require'websocket.frame'
-local port = os.getenv('LUAWS_WSTEST_PORT') or 8081
+local port = os.getenv('LUAWS_WSTEST_PORT') or 8088
 local req_ws = ' (requires external websocket server @port '..port..')'
 local url = 'ws://localhost:'..port
 

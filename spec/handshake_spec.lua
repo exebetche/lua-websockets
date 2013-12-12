@@ -1,6 +1,6 @@
 package.path = package.path..'../src'
 
-local port = os.getenv('LUAWS_WSTEST_PORT') or 8081
+local port = os.getenv('LUAWS_WSTEST_PORT') or 8088
 
 local url = 'ws://localhost:'..port
 
@@ -94,7 +94,7 @@ describe(
       end)
     
     describe(
-      'connecting to echo server (echo-js.ws) on port 8081',
+      'connecting to echo server (echo-js.ws) on port 8088',
       function()
         local sock = socket.tcp()
         sock:settimeout(0.3)
